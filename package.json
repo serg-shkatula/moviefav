@@ -1,6 +1,6 @@
 {
   "name": "moviefav",
-  "version": "0.0.1",
+  "version": "0.1",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -10,6 +10,7 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.15.15",
     "react": "17.0.2",
     "react-native": "0.66.4"
   },
