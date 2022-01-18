@@ -8,7 +8,7 @@
  * @format
  */
 
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {
   ImageBackground,
   Keyboard,
@@ -47,11 +47,13 @@ const App = () => {
   } = favouritesApi;
   const likedIds = likedMovies.map((m) => m.id);
   const dislikedIds = dislikedMovies.map((m) => m.id);
+  const dislikedIdsRef = useRef(dislikedIds);
+  dislikedIdsRef.current = dislikedIds;
 
   api.useSearch((res) => {
     setSearchResults(
       res
-        ?.filter((item) => !!item.y)
+        ?.filter((item) => !!item.y && !dislikedIds.includes(item.id))
         .map<MovieInfoPreview>((item) => ({
           imageUrl: item.i?.imageUrl,
           title: item.l,
